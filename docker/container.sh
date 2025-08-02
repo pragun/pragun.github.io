@@ -21,6 +21,7 @@ run_container() {
         -it --rm \
         --name hugo-build \
         -v $SRC_DIR:/site \
+        -v $HOME/.ssh:/root/.ssh \
         -p 1313:1313 \
         -w /site \
         hugo-build
