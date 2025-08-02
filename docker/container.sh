@@ -13,8 +13,9 @@ build_container() {
 
 run_container() {
     echo "Once inside the container, build marlin by"
-    echo "  hugo serve --bind 0.0.0.0"
-    echo "  hugo build"
+    echo "To serve:hugo serve --bind 0.0.0.0"
+    echo "To build:hugo"
+    echo "To upload:ghp-import -n -p -f public"
     echo "-----"
     echo " "
     docker run \
