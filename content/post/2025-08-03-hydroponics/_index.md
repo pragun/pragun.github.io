@@ -28,6 +28,7 @@ no wifi,
 no bluetooth,  
 nor the Internet. 
 
-
 I did allow myself a simple 24-hour timer that I bought from Amazon for 10$. It has a bunch of buttons,
 and a rather complex workflow to program. I detest it. But over the years, I have learned how to work it. Now I would not want to change it.
+
+![IMG_4298](./IMG_4298.jpg)
