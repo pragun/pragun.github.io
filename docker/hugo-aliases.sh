@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Hugo aliases
+#
+export PATH=$PATH:/usr/local/go/bin:/go/bin
 alias hb='hugo --minify'
 alias hs='hugo server --bind 0.0.0.0 --port 1313'
 

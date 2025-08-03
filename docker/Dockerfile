@@ -9,7 +9,8 @@ RUN apk add --no-cache git build-base npm
 RUN go install --tags extended github.com/gohugoio/hugo@${HUGO_VERSION}
 RUN apk add --no-cache python3 py-pip openssh-client
 RUN pip install --break-system-packages ghp-import
+RUN apk add --no-cache bash
 
 COPY hugo-aliases.sh /etc/profile.d/hugo-aliases.sh
 
-ENTRYPOINT ["/bin/sh", "-l"]
+ENTRYPOINT ["/bin/bash", "-l"]
