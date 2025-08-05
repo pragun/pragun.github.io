@@ -1,0 +1,59 @@
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- if .Get "link" -}}
+    <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+  {{- end -}}
+
+  {{- $src := .Get "src" | default "" -}}
+  {{- $img := .Page.Resources.Get $src -}}
+
+  {{- if not $img }}
+    {{- $parts := split $src "/" -}}
+    {{- $filename := index $parts (sub (len $parts) 1) -}}
+    <pre>{{ print $parts }}</pre>
+    {{/* Get full content-relative folder path like "projects/rainbarrel-2025" */}}
+    {{- $pagePath := .Page.File.Dir | strings.TrimSuffix "/" -}}
+
+    {{/* Append path parts except filename */}}
+    {{- range first (sub (len $parts) 1) $parts }}
+      {{- $pagePath = printf "%s/%s" $pagePath . -}}
+    {{- end }}
+
+    {{- $targetPage := site.GetPage $pagePath -}}
+    <pre>{{ print "%#v" $targetPage }}</pre>
+    {{- if $targetPage }}
+      {{- $img = $targetPage.Resources.GetMatch $filename -}}
+      <pre>{{ print "%#v" $img }}</pre>
+      <pre>{{ print "src: " $img.RelPermalink }}</pre>
+      {{ $src = $img.RelPermalink -}}
+    {{- end }}
+  {{- end }}
+
+  {{- if not $img }}
+    {{- $img = resources.Get $src -}}
+  {{- end }}
+
+  <img src="{{ $src }}"
+      {{- if or (.Get "alt") (.Get "caption") }}
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+      {{- end -}}
+      {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+      {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+      {{- with .Get "loading" }} loading="{{ . }}"{{ end -}}
+    ><!-- Closing img tag -->
+
+  {{- if .Get "link" }}</a>{{ end -}}
+
+  {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+    <figcaption>
+      {{- with .Get "title" }}
+        <h4>{{ . }}</h4>
+      {{- end }}
+      {{- if or (.Get "caption") (.Get "attr") -}}<p>
+        {{- .Get "caption" | markdownify -}}
+        {{- with .Get "attrlink" }}<a href="{{ . }}">{{ end -}}
+        {{- .Get "attr" | markdownify -}}
+        {{- if .Get "attrlink" }}</a>{{ end }}</p>
+      {{- end }}
+    </figcaption>
+  {{- end }}
+</figure>
