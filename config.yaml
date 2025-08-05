@@ -5,6 +5,7 @@ theme: hugo-ivy
 ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 preserveTaxonomyNames: true
 footnotereturnlinkcontents: ↩
+summaryLength: 100
 
 permalinks:
   note: /note/:year/:month/:day/:slug/
@@ -15,9 +16,11 @@ menu:
     - name: "Home"
       url: "/"
       weight: 10
-    - name: "Hydroponics"
-      url: "/categories/Hydroponics/"
-      weight: 20
+    - name: "The Garden"
+      url: "/categories/Garden/"
+    - name: "Poetry"
+      url: "/categories/Poetry/"
+      weight: 15
     - name: "About"
       url: "/about/"
       weight: 30
