@@ -1,9 +1,37 @@
+
 {{ partial "header.html" . }}
 
 {{ .Content }}
 
-<ul>
-  {{ range (where (cond .IsHome .Site.RegularPages .Pages) "Section" "!=" "") }}
+{{ $summaryWords := .Site.Params.summaryWords | default 1000 }}
+{{ $pages := (where (cond .IsHome .Site.RegularPages .Pages) "Section" "!=" "") }}
+{{ $first10 := first 10 $pages }}
+{{ $next10 := first 10 (after 10 $pages) }}
+
+<!-- === First 10 posts with summary cards === -->
+<div class="post-cards">
+  {{ range $first10 }}
+  <div class="post-card">
+    <p class="date">{{ .Date.Format "2006/01/02" }}</p>
+    {{ with .Resources.GetMatch  "*.{jpg,jpeg,png,gif}" }}
+      <img src="{{ .RelPermalink }}" alt="Post image">
+    {{ else }}
+      {{ with findRE "<img[^>]+src=[\"']([^\"']+)[\"']" .Content 1 }}
+        <img src="{{ index . 0 | replaceRE `.*src=['\"]([^'\"]+)['\"].*` "$1" }}" alt="Post image">
+      {{ end }}
+    {{ end }}
+
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+    {{ .Summary }}
+
+  </div>
+  {{ end }}
+</div>
+
+<!-- === Next 10 posts as compact list === -->
+<ul class="post-list">
+  {{ range $next10 }}
   <li>
     <span class="date">{{ .Date.Format "2006/01/02" }}</span>
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
