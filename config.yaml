@@ -18,9 +18,13 @@ menu:
       weight: 10
     - name: "The Garden"
       url: "/categories/Garden/"
+      weight: 11
     - name: "Poetry"
       url: "/categories/Poetry/"
       weight: 15
+    - name: "Engineering"
+      url: "/categories/Engineering/"
+      weight: 20
     - name: "About"
       url: "/about/"
       weight: 30
