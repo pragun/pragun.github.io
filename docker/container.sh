@@ -16,6 +16,7 @@ run_container() {
     echo "To serve:hugo serve --bind 0.0.0.0"
     echo "To build:hugo"
     echo "To upload:ghp-import -n -p -f public"
+    echo "Checkout aliases or say "help" for more info"
     echo "-----"
     echo " "
     docker run \
