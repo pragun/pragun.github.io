@@ -1,7 +1,7 @@
 ---
 title: Hydroponics   
 author: Pragun Goyal
-date: '2025-08-03'
+date: 2025-08-03
 categories:
   - Garden
 tags:
