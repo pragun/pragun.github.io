@@ -9,7 +9,7 @@
   {{- if not $img }}
     {{- $parts := split $src "/" -}}
     {{- $filename := index $parts (sub (len $parts) 1) -}}
-    <pre>{{ print $parts }}</pre>
+    <!-- <pre>{{ print $parts }}</pre> -->
     {{/* Get full content-relative folder path like "projects/rainbarrel-2025" */}}
     {{- $pagePath := .Page.File.Dir | strings.TrimSuffix "/" -}}
 
@@ -19,11 +19,11 @@
     {{- end }}
 
     {{- $targetPage := site.GetPage $pagePath -}}
-    <pre>{{ print "%#v" $targetPage }}</pre>
+    <!-- <pre>{{ print "%#v" $targetPage }}</pre> -->
     {{- if $targetPage }}
       {{- $img = $targetPage.Resources.GetMatch $filename -}}
-      <pre>{{ print "%#v" $img }}</pre>
-      <pre>{{ print "src: " $img.RelPermalink }}</pre>
+      <!-- <pre>{{ print "%#v" $img }}</pre> -->
+      <!-- <pre>{{ print "src: " $img.RelPermalink }}</pre> -->
       {{ $src = $img.RelPermalink -}}
     {{- end }}
   {{- end }}
